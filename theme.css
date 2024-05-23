@@ -1,0 +1,117 @@
+/*
+    Created on : 2024.05.22
+    Author     : Mark Bersalona
+
+    This is the CSS theme for the Sensaphone WSG30 Temperature Display Diagnostic
+*/
+
+/*Main window*/
+window
+{
+    /*background-color: black;*/
+    /*background-color: rgb(13, 83, 81);*/
+    background-color: rgb(53, 66, 85);
+}
+
+/*Diagnostics pop-up dialog window*/
+dialog
+{
+    background-color: goldenrod;
+}
+
+
+/*Generic label*/
+label
+{
+    /*color: #33CCCC;*/
+    /* For original Stratus Display */
+    /*font: bold 18px DejaVu Sans, sans-serif;*/
+    /* For Stratus Display Mk.2 */
+    /*font: bold 25px DejaVu Sans, sans-serif;*/
+	/* For 400 Cellular Diagnostic */
+	font: bold 14px DejaVu Sans, sans-serif;
+}
+
+/*Main display, zone values*/
+label#lblZoneValue
+{
+    color: #00FF00;
+}
+
+/*Main display, zone status OK/Alarm*/
+label#ZoneStatusOK
+{
+    color: #00FF00;
+}
+label#ZoneStatusAlarm
+{
+    color: red;
+}
+/* Button labels */
+label#button
+{
+    color: black;
+}
+
+/*Main display, zone numbers*/
+label#ZoneNumber
+{
+    color: yellow;
+}
+
+/*Main display, connection OK/warning/error*/
+label#ConnectionOK
+{
+    color: #00FF00;
+}
+label#ConnectionWarning
+{
+    color: yellow;
+}
+label#ConnectionError
+{
+    color: red;
+}
+
+/*Main display, zone names*/
+
+/*Diagnostics display, titles*/
+label#DiagnosticsTitle
+{
+    /*color: rgb(87, 225, 82);*/
+    color: rgb(255, 251, 0);
+}
+label#DiagnosticsFixed
+{
+    /*color: rgb(87, 225, 82);*/
+    color: black;
+}
+
+/*Diagnostics display, values*/
+label#DiagnosticValue
+{
+    /* For original Stratus Display */
+    /*color: black;*/
+    /* For Stratus Display Mk.2 */
+    color: white;
+}
+
+/*button colors*/
+button
+{
+    background-color: gray;
+    color: black;
+}
+
+/*vertical separator*/
+separator
+{
+    color: gray;
+    background-color: gray;
+}
+
+/* textview styling */
+textview
+{
+    font: 9px Monoid, DejaVu Sans Mono, monospace;
+}
