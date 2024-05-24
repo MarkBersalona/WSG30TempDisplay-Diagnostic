@@ -617,7 +617,7 @@
                 <property name="valign">center</property>
                 <property name="margin_left">20</property>
                 <property name="margin_right">10</property>
-                <property name="label" translatable="yes">Calibration date YYYYMMDD</property>
+                <property name="label" translatable="yes">Calibration date (YYYYMMDD)</property>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -683,7 +683,7 @@
                 <property name="can_focus">True</property>
                 <property name="valign">center</property>
                 <property name="hexpand">True</property>
-                <property name="max_length">1</property>
+                <property name="max_length">9</property>
                 <property name="invisible_char">●</property>
                 <property name="text" translatable="yes">1234567890</property>
               </object>

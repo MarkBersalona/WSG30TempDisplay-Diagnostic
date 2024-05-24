@@ -101,53 +101,6 @@ static guint16 guiStickyErrorCountdown_sec = STICKY_ERROR_COUNT_PERIOD_SECONDS;
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////////
-// Name:         is_valid_mac
-// Description:  Validate a given string is a MAC address
-//               Expects format xx-xx-xx-xx-xx-xx
-//                           or xx:xx:xx:xx:xx:xx
-//               where xx is a hexadecimal number in range [00:FF]
-//               case-insensitive
-// Parameters:   paucTestMAC - pointer to string to be tested
-// Return:       TRUE if valid MAC; FALSE otherwise
-////////////////////////////////////////////////////////////////////////////
-gboolean is_valid_mac(char* paucTestMAC)
-{
-    // Test if the length is correct
-    if (17 != strlen(paucTestMAC))
-    {
-        return FALSE;
-    }
-
-    // Test if delimiters are '-' or ':'
-    for (int i = 2; i < 17; i += 3)
-    {
-        if (paucTestMAC[i] != '-' && paucTestMAC[i] != ':')
-        {
-            // invalid delimiter
-            return FALSE;
-        }
-    }
-
-    // Test if digits are hex
-    for (int i = 0; i < 17; ++i)
-    {
-        if ( !isxdigit(paucTestMAC[i]) )
-        {
-            // Ignore the indices of the delimiters
-            if ( i!=2 && i!=5 && i!=8 && i!=11 && i!=14)
-            {
-                return FALSE;
-            }
-        }
-    }
-
-    // Delimiters are OK
-    // Digits are hex
-    // Must be a properly-formatted MAC address
-    return TRUE;
-}
-// end is_valid_mac
 
 ////////////////////////////////////////////////////////////////////////////
 // Name:         trim
@@ -180,47 +133,11 @@ char* trim(char* paucInputString)
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////////
-// Name:         main_ATCommand_clicked
-// Description:  Callback routine - ATCommand button clicked
-//               Send the user-entered AT command to the SARA-R5 on the 400 Cellular
-// Parameters:   the contents of the AT Command text entry
-// Return:       None
-////////////////////////////////////////////////////////////////////////////
-void main_ATCommand_clicked(void)
-{
-    char lcATCommand[100];
-    guint16 luiATCommandLength;
-
-    display_status_write("AT Command button pressed\r\n");
-
-    //luiATCommandLength = gtk_entry_get_text_length(GTK_ENTRY(txtentATCommand));
-    //sprintf(lcTempMainString, "AT Command length = %d chars\r\n", luiATCommandLength);
-    //display_status_write(lcTempMainString);
-    if (luiATCommandLength > 0)
-    {
-        // Get the contents of the AT Command text entry
-        memset(lcATCommand, 0, sizeof(lcATCommand));
-        //memcpy(lcATCommand, gtk_entry_get_text(GTK_ENTRY(txtentATCommand)), luiATCommandLength);
-
-        // Send the formatted AT Command to the 400 Cellular
-        //sprintf(lcTempMainString, "AT Command = >>%s<<\r\n", lcATCommand);
-        //display_status_write(lcTempMainString);
-        sprintf(lcTempMainString, "+++COMMAND:%s", lcATCommand);
-        serial_write(lcTempMainString);
-    }
-    else
-    {
-        display_status_write("WARNING - AT Command entry appears blank\r\n");
-    }
-}
-// end main_ATCommand_clicked
-
 
 ////////////////////////////////////////////////////////////////////////////
 // Name:         main_BOARDREV_clicked
 // Description:  Callback routine - BoardRev button clicked
-//               Send the user-entered Board rev to the 400 Cellular
+//               Send the user-entered Board rev to the WSG30 Temperature Display
 // Parameters:   the contents of the Board rev text entry
 // Return:       None
 ////////////////////////////////////////////////////////////////////////////
@@ -229,22 +146,22 @@ void main_BOARDREV_clicked(void)
     char lcBoardRev[100];
     guint16 luiBoardRevLength;
 
-    display_status_write("Board rev button pressed\r\n");
+    display_status_write("PCB rev button pressed\r\n");
 
-    //luiBoardRevLength = gtk_entry_get_text_length(GTK_ENTRY(txtentNewBoardRev));
-    //sprintf(lcTempMainString, "luiBoardRevLength length = %d chars\r\n", luiBoardRevLength);
-    //display_status_write(lcTempMainString);
+    luiBoardRevLength = gtk_entry_get_text_length(GTK_ENTRY(txtentPCBRev));
+    sprintf(lcTempMainString, "luiBoardRevLength length = %d chars\r\n", luiBoardRevLength);
+    display_status_write(lcTempMainString);
     if (luiBoardRevLength > 0)
     {
         // Get the contents of the Board rev text entry
         memset(lcBoardRev, 0, sizeof(lcBoardRev));
-        //memcpy(lcBoardRev, trim((char*)gtk_entry_get_text(GTK_ENTRY(txtentNewBoardRev))), 1);
+        memcpy(lcBoardRev, trim((char*)gtk_entry_get_text(GTK_ENTRY(txtentPCBRev))), 1);
 
-        // Send the formatted Board rev Menu to the 400 Cellular
+        // Send the formatted Board rev Menu to the WSG30 Temperature Display
         if (isalpha(lcBoardRev[0]))
         {
-            //sprintf(lcTempMainString, "New Board rev = >>%s<<\r\n", lcBoardRev);
-            //display_status_write(lcTempMainString);
+            sprintf(lcTempMainString, "New Board rev = >>%s<<\r\n", lcBoardRev);
+            display_status_write(lcTempMainString);
             sprintf(lcTempMainString, "+++MENU:P %s", lcBoardRev);
             serial_write(lcTempMainString);
         }
@@ -260,6 +177,42 @@ void main_BOARDREV_clicked(void)
     }
 }
 // end main_BOARDREV_clicked
+
+////////////////////////////////////////////////////////////////////////////
+// Name:         main_CALDATE_clicked
+// Description:  Callback routine - CalDate button clicked
+//               Send the user-entered Calibration Date to the WSG30 Temperature Display
+// Parameters:   the contents of the CalDate text entry
+// Return:       None
+////////////////////////////////////////////////////////////////////////////
+void main_CALDATE_clicked(void)
+{
+    char lcCalDate[100];
+    guint16 luiCalDateLength;
+
+    display_status_write("Calibration date button pressed\r\n");
+
+    luiCalDateLength = gtk_entry_get_text_length(GTK_ENTRY(txtentCalDate));
+    sprintf(lcTempMainString, "luiCalDateLength length = %d chars\r\n", luiCalDateLength);
+    display_status_write(lcTempMainString);
+    if (luiCalDateLength > 0)
+    {
+        // Get the contents of the CalDate text entry
+        memset(lcCalDate, 0, sizeof(lcCalDate));
+        memcpy(lcCalDate, trim((char*)gtk_entry_get_text(GTK_ENTRY(txtentCalDate))), luiCalDateLength);
+
+        // Send the formatted calibration date to the WSG30 Temperature Display
+        sprintf(lcTempMainString, "New calibration date = >>%s<<\r\n", lcCalDate);
+        display_status_write(lcTempMainString);
+        sprintf(lcTempMainString, "+++MENU:D %s", lcCalDate);
+        serial_write(lcTempMainString);
+    }
+    else
+    {
+        display_status_write("WARNING - Calibration date appears blank\r\n");
+    }
+}
+// end main_CALDATE_clicked
 
 ////////////////////////////////////////////////////////////////////////////
 // Name:         main_LOGENABLE_state_set
@@ -306,50 +259,6 @@ void main_LOGENABLE_state_set(void)
 // end main_LOGENABLE_state_set
 
 ////////////////////////////////////////////////////////////////////////////
-// Name:         main_MAC_clicked
-// Description:  Callback routine - MAC button clicked
-//               Send the user-entered MAC to the 400 Cellular
-// Parameters:   the contents of the MAC text entry
-// Return:       None
-////////////////////////////////////////////////////////////////////////////
-void main_MAC_clicked(void)
-{
-    char lcMACAddress[100];
-    guint16 luiMACAddressLength;
-
-    display_status_write("MAC button pressed\r\n");
-
-    //luiMACAddressLength = gtk_entry_get_text_length(GTK_ENTRY(txtentNewMAC));
-    //sprintf(lcTempMainString, "luiMACAddressLength length = %d chars\r\n", luiMACAddressLength);
-    //display_status_write(lcTempMainString);
-    if (luiMACAddressLength > 0)
-    {
-        // Get the contents of the MAC text entry
-        memset(lcMACAddress, 0, sizeof(lcMACAddress));
-        //memcpy(lcMACAddress, trim((char*)gtk_entry_get_text(GTK_ENTRY(txtentNewMAC))), luiMACAddressLength);
-
-        // Send the formatted MAC Menu to the 400 Cellular
-        if (is_valid_mac(lcMACAddress))
-        {
-            //sprintf(lcTempMainString, "New MAC address = >>%s<<\r\n", lcMACAddress);
-            //display_status_write(lcTempMainString);
-            sprintf(lcTempMainString, "+++MENU:M %s", lcMACAddress);
-            serial_write(lcTempMainString);
-        }
-        else
-        {
-            sprintf(lcTempMainString, "WARNING - '%s' is an invalid MAC address\r\n", lcMACAddress);
-            display_status_write(lcTempMainString);
-        }
-    }
-    else
-    {
-        display_status_write("WARNING - MAC address appears blank\r\n");
-    }
-}
-// end main_MAC_clicked
-
-////////////////////////////////////////////////////////////////////////////
 // Name:         main_MENU_clicked
 // Description:  Callback routine - MENU button clicked
 // Parameters:   None
@@ -393,7 +302,7 @@ void main_REBOOT_clicked(void)
     serial_write(lcTempMainString);
 
     // Reset display
-    //display_clear_UUT_values();
+    display_clear_UUT_values();
 }
 // end main_REBOOT_clicked
 
@@ -411,9 +320,81 @@ void main_RTD_clicked(void)
     serial_write(lcTempMainString);
 
     // Reset display
-    //display_clear_UUT_values();
+    display_clear_UUT_values();
 }
 // end main_RTD_clicked
+
+////////////////////////////////////////////////////////////////////////////
+// Name:         main_SERIALNUM_clicked
+// Description:  Callback routine - SerialNum button clicked
+//               Send the user-entered serial number to the WSG30 Temperature Display
+// Parameters:   the contents of the SerialNum text entry
+// Return:       None
+////////////////////////////////////////////////////////////////////////////
+void main_SERIALNUM_clicked(void)
+{
+    char lcSerialNum[100];
+    guint16 luiSerialNumLength;
+
+    display_status_write("Serial Number button pressed\r\n");
+
+    luiSerialNumLength = gtk_entry_get_text_length(GTK_ENTRY(txtentSerialNum));
+    sprintf(lcTempMainString, "luiSerialNumLength length = %d chars\r\n", luiSerialNumLength);
+    display_status_write(lcTempMainString);
+    if (luiSerialNumLength > 0)
+    {
+        // Get the contents of the SerialNum text entry
+        memset(lcSerialNum, 0, sizeof(lcSerialNum));
+        memcpy(lcSerialNum, trim((char*)gtk_entry_get_text(GTK_ENTRY(txtentSerialNum))), luiSerialNumLength);
+
+        // Send the formatted serial number to the WSG30 Temperature Display
+        sprintf(lcTempMainString, "New serial number = >>%s<<\r\n", lcSerialNum);
+        display_status_write(lcTempMainString);
+        sprintf(lcTempMainString, "+++MENU:N %s", lcSerialNum);
+        serial_write(lcTempMainString);
+    }
+    else
+    {
+        display_status_write("WARNING - Serial Number appears blank\r\n");
+    }
+}
+// end main_SERIALNUM_clicked
+
+////////////////////////////////////////////////////////////////////////////
+// Name:         main_VREF_clicked
+// Description:  Callback routine - Vref button clicked
+//               Send the user-entered Vref to the WSG30 Temperature Display
+// Parameters:   the contents of the Vref text entry
+// Return:       None
+////////////////////////////////////////////////////////////////////////////
+void main_VREF_clicked(void)
+{
+    char lcVref[100];
+    guint16 luiVrefLength;
+
+    display_status_write("Vref button pressed\r\n");
+
+    luiVrefLength = gtk_entry_get_text_length(GTK_ENTRY(txtentVref));
+    sprintf(lcTempMainString, "luiVrefLength length = %d chars\r\n", luiVrefLength);
+    display_status_write(lcTempMainString);
+    if (luiVrefLength > 0)
+    {
+        // Get the contents of the Vref text entry
+        memset(lcVref, 0, sizeof(lcVref));
+        memcpy(lcVref, trim((char*)gtk_entry_get_text(GTK_ENTRY(txtentVref))), luiVrefLength);
+
+        // Send the formatted Vref to the WSG30 Temperature Display
+        sprintf(lcTempMainString, "New Vref = >>%s<<\r\n", lcVref);
+        display_status_write(lcTempMainString);
+        sprintf(lcTempMainString, "+++MENU:V %s", lcVref);
+        serial_write(lcTempMainString);
+    }
+    else
+    {
+        display_status_write("WARNING - Vref appears blank\r\n");
+    }
+}
+// end main_VREF_clicked
 
 
 
@@ -851,6 +832,79 @@ main_parse_msg(char *paucReceiveMsg)
         gtk_label_set_text(GTK_LABEL(lblConnection), lcTempMainString);
     }
     
+    // Look for "PCB revision = "
+    plcDetected = strstr((char*)paucReceiveMsg, "PCB revision = ");
+    if (plcDetected)
+    {
+        memset (lcTempMainString, 0, sizeof(lcTempMainString));
+        memcpy (lcTempMainString, plcDetected+15, strlen(plcDetected+15));
+        display_status_write("Detected PCB revision: ");
+        display_status_write(lcTempMainString);
+        display_status_write("\r\n");
+        // Write the PCB revision to the PCB rev text entry box
+        gtk_entry_set_text(GTK_ENTRY(txtentPCBRev), lcTempMainString);
+    }
+    
+    // Look for "Serial number = "
+    plcDetected = strstr((char*)paucReceiveMsg, "Serial number = ");
+    if (plcDetected)
+    {
+        memset (lcTempMainString, 0, sizeof(lcTempMainString));
+        memcpy (lcTempMainString, plcDetected+16, strlen(plcDetected+16));
+        display_status_write("Detected serial number: ");
+        display_status_write(lcTempMainString);
+        display_status_write("\r\n");
+        // Write the serial number to the serial number text entry box
+        gtk_entry_set_text(GTK_ENTRY(txtentSerialNum), lcTempMainString);
+    }
+    
+    // Look for "Calibration date = "
+    plcDetected = strstr((char*)paucReceiveMsg, "Calibration date = ");
+    if (plcDetected)
+    {
+        memset (lcTempMainString, 0, sizeof(lcTempMainString));
+        memcpy (lcTempMainString, plcDetected+19, strlen(plcDetected+19));
+        display_status_write("Detected calibration date (YYYYMMDD): ");
+        display_status_write(lcTempMainString);
+        display_status_write("\r\n");
+        // Write the calibration date to the calibration date text entry box
+        gtk_entry_set_text(GTK_ENTRY(txtentCalDate), lcTempMainString);
+    }
+    
+    // Look for "Voltage reference (mV) = "
+    plcDetected = strstr((char*)paucReceiveMsg, "Voltage reference (mV) = ");
+    if (plcDetected)
+    {
+        memset (lcTempMainString, 0, sizeof(lcTempMainString));
+        memcpy (lcTempMainString, plcDetected+25, strlen(plcDetected+25));
+        display_status_write("Detected voltage reference (mV): ");
+        display_status_write(lcTempMainString);
+        display_status_write("\r\n");
+        // Write the voltage reference to the voltage reference text entry box
+        gtk_entry_set_text(GTK_ENTRY(txtentVref), lcTempMainString);
+    }
+    
+    // Look for "PAN_ID:"
+    plcDetected = strstr((char*)paucReceiveMsg, "PAN_ID:");
+    if (plcDetected)
+    {
+        plcSpace = strchr(plcDetected+7, 0x20); // search for 1st space character
+        // Write the PAN ID to the PAN ID label
+        memset (lcTempMainString, 0, sizeof(lcTempMainString));
+        memcpy (lcTempMainString, plcDetected+7, plcSpace - (plcDetected+7));
+        gtk_label_set_text(GTK_LABEL(lblPANID), lcTempMainString);
+    }
+    
+    // Look for "Channel:"
+    plcDetected = strstr((char*)paucReceiveMsg, "Channel:");
+    if (plcDetected)
+    {
+        plcSpace = strchr(plcDetected+8, 0x20); // search for 1st space character
+        // Write the CHANNEL to the CHANNEL label
+        memset (lcTempMainString, 0, sizeof(lcTempMainString));
+        memcpy (lcTempMainString, plcDetected+8, plcSpace - (plcDetected+8));
+        gtk_label_set_text(GTK_LABEL(lblChannel), lcTempMainString);
+    }
     
 }
 // end main_parse_msg

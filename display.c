@@ -88,16 +88,15 @@ char* pucMenuItems[] =
     "Toggle 5sec status",
     "Buzzer",
     "Read cal date",
-    "LCD blink",
-    "LCD normal",
+    "Toggle LCD blink",
 
     "Music notes",
     "Read SN",
     "Read PCB rev",
     "Read Vref",
     "RESET to defaults",
-    "REBOOT",
 
+    "REBOOT",
     "ENDOFMENU"
 };
 char* pucMenuCMD[] =
@@ -106,16 +105,15 @@ char* pucMenuCMD[] =
     "1", // Toggle 5-second periodic status
     "B", // Buzzer test
     "d", // Read calibration date
-    "L", // LCD blink
-    "l", // LCD normal
+    "L", // Toggle LCD blink
 
     "M", // Play musical notes
     "n", // Read serial number
     "p", // Read PCB revision
     "v", // Read Vref (mV)
     "X", // RESET to defaults
-    "Z", // REBOOT
 
+    "Z", // REBOOT
     "-", // end of menu
  
     
@@ -317,9 +315,10 @@ display_main_initialize(void)
     //
     // Link button presses to callback routines
     //
-    //g_signal_connect(btnATCommand,   "clicked", G_CALLBACK(main_ATCommand_clicked), NULL);
-    //g_signal_connect(btnNewBoardRev, "clicked", G_CALLBACK(main_BOARDREV_clicked), NULL);
-    //g_signal_connect(btnNewMAC,      "clicked", G_CALLBACK(main_MAC_clicked), NULL);
+    g_signal_connect(btnCalDate,   "clicked", G_CALLBACK(main_CALDATE_clicked), NULL);
+    g_signal_connect(btnSerialNum, "clicked", G_CALLBACK(main_SERIALNUM_clicked), NULL);
+    g_signal_connect(btnPCBRev,    "clicked", G_CALLBACK(main_BOARDREV_clicked), NULL);
+    g_signal_connect(btnVref,      "clicked", G_CALLBACK(main_VREF_clicked), NULL);
     g_signal_connect(btnReboot,      "clicked", G_CALLBACK(main_REBOOT_clicked), NULL);
     g_signal_connect(btnRTD,         "clicked", G_CALLBACK(main_RTD_clicked), NULL);
     g_signal_connect(btnMenu,        "clicked", G_CALLBACK(main_MENU_clicked), NULL);

@@ -57,10 +57,12 @@ extern "C"
 char *main_receive_msg_read(void);
 void main_receive_msg_write(char *paucReceiveMsg);
 
-void main_ATCommand_clicked(void);
 void main_BOARDREV_clicked(void);
+void main_CALDATE_clicked(void);
+void main_SERIALNUM_clicked(void);
+void main_VREF_clicked(void);
+
 void main_LOGENABLE_state_set(void);
-void main_MAC_clicked(void);
 void main_MENU_clicked(void);
 void main_REBOOT_clicked(void);
 void main_RTD_clicked(void);
