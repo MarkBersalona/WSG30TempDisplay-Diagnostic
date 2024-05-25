@@ -36,8 +36,8 @@ GtkWidget *lblTimestampTitle, *lblAlarmHITitle, *lblAlarmLOTitle;
 GtkWidget *lblTimestamp, *lblAlarmHI, *lblAlarmLO;
 GtkWidget *lblAlarmTitle, *lblSampleRateTitle, *lblACKTitle, *lblXBeeSNTitle;
 GtkWidget *lblAlarm, *lblSampleRate, *lblACK, *lblXBeeSN;
-GtkWidget *lblDeviceTitle, *lblConnectionTitle;
-GtkWidget *lblDevice, *lblConnection;
+GtkWidget *lblDeviceTitle, *lblConnectionTitle, *lblFWVerTitle;
+GtkWidget *lblDevice, *lblConnection, *lblFWVer;
 
 GtkWidget *lblHostCalTitle, *lblBuzzerTitle;
 GtkWidget *lblHostCal, *lblBuzzer;
@@ -134,6 +134,8 @@ display_main_initialize(void)
     // Connect widgets
     //
     // Main display labels
+    lblFWVerTitle             = GTK_WIDGET(gtk_builder_get_object(builder, "lblFWVerTitle"));
+    lblFWVer                  = GTK_WIDGET(gtk_builder_get_object(builder, "lblFWVer"));
     lblTimestampTitle         = GTK_WIDGET(gtk_builder_get_object(builder, "lblTimestampTitle"));
     lblTimestamp              = GTK_WIDGET(gtk_builder_get_object(builder, "lblTimestamp"));
     lblElapsedTimeTitle       = GTK_WIDGET(gtk_builder_get_object(builder, "lblElapsedTimeTitle"));
@@ -228,6 +230,7 @@ display_main_initialize(void)
     //
 
     // Titles
+    gtk_widget_set_name((lblFWVerTitle),             "DiagnosticsTitle");
     gtk_widget_set_name((lblTimestampTitle),         "DiagnosticsTitle");
     gtk_widget_set_name((lblElapsedTimeTitle),       "DiagnosticsTitle");
     gtk_widget_set_name((lblBatteryVoltageTitle),    "DiagnosticsTitle");
@@ -265,6 +268,7 @@ display_main_initialize(void)
     //gtk_widget_set_name((lblXXXXXXXX),    "DiagnosticsFixed");
 		
 	// Values
+    gtk_widget_set_name((lblFWVer),             "DiagnosticValue");
     gtk_widget_set_name((lblTimestamp),         "DiagnosticValue");
     gtk_widget_set_name((lblElapsedTime),       "DiagnosticValue");
     gtk_widget_set_name((lblBatteryVoltage),    "DiagnosticValue");
@@ -336,6 +340,7 @@ display_main_initialize(void)
 ////////////////////////////////////////////////////////////////////////////
 void display_clear_UUT_values(void)
 {
+    gtk_label_set_text(GTK_LABEL(lblFWVer), "------");
     gtk_label_set_text(GTK_LABEL(lblTimestamp), "0000000000");
     gtk_label_set_text(GTK_LABEL(lblElapsedTime), "------");
     gtk_label_set_text(GTK_LABEL(lblBatteryVoltage), "------");

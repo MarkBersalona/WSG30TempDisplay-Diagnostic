@@ -22,7 +22,7 @@ extern "C" {
 // version number
 #define VERSION_A     "0"
 #define VERSION_B     "1"
-#define VERSION_C     "0"
+#define VERSION_C     "1"
 #define VERSION_DATE  "2024.05.24"
     
 // Period of the periodic callback

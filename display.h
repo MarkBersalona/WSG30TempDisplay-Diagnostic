@@ -26,8 +26,8 @@ extern GtkWidget *lblTimestampTitle, *lblAlarmHITitle, *lblAlarmLOTitle;
 extern GtkWidget *lblTimestamp, *lblAlarmHI, *lblAlarmLO;
 extern GtkWidget *lblAlarmTitle, *lblSampleRateTitle, *lblACKTitle, *lblXBeeSNTitle;
 extern GtkWidget *lblAlarm, *lblSampleRate, *lblACK, *lblXBeeSN;
-extern GtkWidget *lblDeviceTitle, *lblConnectionTitle;
-extern GtkWidget *lblDevice, *lblConnection;
+extern GtkWidget *lblDeviceTitle, *lblConnectionTitle, *lblFWVerTitle;
+extern GtkWidget *lblDevice, *lblConnection, *lblFWVer;
 
 extern GtkWidget *lblHostCalTitle, *lblBuzzerTitle;
 extern GtkWidget *lblHostCal, *lblBuzzer;
