@@ -288,6 +288,7 @@ display_main_initialize(void)
     gtk_widget_set_name((lblPANID),      "DiagnosticValue");
     gtk_widget_set_name((lblChannel),    "DiagnosticValue");
     gtk_widget_set_name((lblConnection), "DiagnosticValue");
+    gtk_widget_set_name((lblLogfile),    "DiagnosticValue");
 
     gtk_widget_set_name((lblMinimum),     "DiagnosticValue");
     gtk_widget_set_name((lblTemperature), "DiagnosticValue");
@@ -342,7 +343,7 @@ void display_clear_UUT_values(void)
 {
     gtk_label_set_text(GTK_LABEL(lblFWVer), "------");
     gtk_label_set_text(GTK_LABEL(lblTimestamp), "0000000000");
-    gtk_label_set_text(GTK_LABEL(lblElapsedTime), "------");
+    gtk_label_set_text(GTK_LABEL(lblElapsedTime), "0d 0h 0m 0s");
     gtk_label_set_text(GTK_LABEL(lblBatteryVoltage), "------");
     gtk_label_set_text(GTK_LABEL(lblBatteryPercentage), "------");
     gtk_label_set_text(GTK_LABEL(lblMains), "------");
@@ -362,9 +363,9 @@ void display_clear_UUT_values(void)
     gtk_label_set_text(GTK_LABEL(lblConnection), "------");
     gtk_widget_set_name((lblConnection),     "DiagnosticValue");
 
-    gtk_label_set_text(GTK_LABEL(lblMinimum), "------");
-    gtk_label_set_text(GTK_LABEL(lblTemperature), "------");
-    gtk_label_set_text(GTK_LABEL(lblMaximum), "------");
+    gtk_label_set_text(GTK_LABEL(lblMinimum), "XX.X");
+    gtk_label_set_text(GTK_LABEL(lblTemperature), "XX.X");
+    gtk_label_set_text(GTK_LABEL(lblMaximum), "XX.X");
 
     //gtk_label_set_text(GTK_LABEL(lblXXXXXXXXX), "------");
 
