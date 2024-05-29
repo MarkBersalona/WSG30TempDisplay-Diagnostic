@@ -190,6 +190,14 @@ int serial_write(char * paucMessage)
 
     if (isUSBConnectionOK)
     {
+        ///////////////////////////////////////////////////////
+        //// TEST MAB 2024.05.28
+        //// Send out dummy chars to wake up UUT serial port
+        //g_io_channel_write_chars(gIOChannelSerialUSB, "+++", -1, &lsizeByteWritten, NULL);
+        //g_io_channel_flush(gIOChannelSerialUSB, NULL);
+        // Delay
+        //g_usleep(125000); // Delay n useconds
+        ///////////////////////////////////////////////////////
         // Write message out the serial port
         g_io_channel_write_chars(gIOChannelSerialUSB, paucMessage, -1, &lsizeByteWritten, NULL);
         // Send it out NOW!!

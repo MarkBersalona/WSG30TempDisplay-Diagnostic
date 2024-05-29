@@ -497,17 +497,17 @@ main_parse_msg(char *paucReceiveMsg)
         //gtk_label_set_text(GTK_LABEL(lblBoardRev), lcTempMainString);
     }
     
-    // Look for "WSG30 Temperature Sensor firmware version is "
-    plcDetected = strstr((char*)paucReceiveMsg, "WSG30 Temperature Sensor firmware version is ");
+    // Look for "WSG30 Temperature Display firmware version is "
+    plcDetected = strstr((char*)paucReceiveMsg, "WSG30 Temperature Display firmware version is ");
     if (plcDetected)
     {
         // Write the WSG30 Temperature Sensor FW version to Status
         memset (lcTempMainString, 0, sizeof(lcTempMainString));
-        memcpy (lcTempMainString, plcDetected+33, strlen(plcDetected+45));
-        display_status_write("Detected WSG30 Temperature Sensor firmware version: ");
+        memcpy (lcTempMainString, plcDetected+46, strlen(plcDetected+46));
+        display_status_write("Detected WSG30 Temperature Display firmware version: ");
         display_status_write(lcTempMainString);
         display_status_write("\r\n");
-        //gtk_label_set_text(GTK_LABEL(lbl400FW), lcTempMainString);
+        gtk_label_set_text(GTK_LABEL(lblFWVer), lcTempMainString);
     }
     
     // Look for "Network_Connection_StateMachine: Transitioning from "
