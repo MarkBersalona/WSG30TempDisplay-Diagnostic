@@ -541,6 +541,15 @@ main_parse_msg(char *paucReceiveMsg)
         }
     }
     
+    // Look for " seconds to Diagnostic mode disable..."
+    plcDetected = strstr((char*)paucReceiveMsg, " seconds to Diagnostic mode disable...");
+    if (plcDetected)
+    {
+        // UUT has started up, waiting for keypress to go into Diagnostic mode
+        // Send a sacrificial dummy string to enable Diagnostic mode
+        serial_write("+++ 1  2  3  Sensaphone WSG30 Temperature Display Diagnostic tool reporting...\r\n");
+    }
+    
     // Look for "+++ Start DIAGNOSTIC MODE +++"
     plcDetected = strstr((char*)paucReceiveMsg, "+++ Start DIAGNOSTIC MODE +++");
     if (plcDetected)
@@ -549,7 +558,7 @@ main_parse_msg(char *paucReceiveMsg)
         // Send a sacrificial dummy string to "initialize" serial_write()
         // and UUT Diagnostic receive
         //serial_write("+++");
-        serial_write("+++ 1  2  3  Sensaphone WSG30 Temperature Display Diagnostic tool reporting...\r\n");
+        //serial_write("+++ 1  2  3  Sensaphone WSG30 Temperature Display Diagnostic tool reporting...\r\n");
     }
     
     // Look for "InputTask: Battery reading: " then "Percentage "
