@@ -3,7 +3,7 @@
  * Author: Mark Bersalona
  *
  * Created on 2023.01.16
- * Sensaphone 400 Cellular Diagnostic serial
+ * Sensaphone WSG30 Temperature Display Diagnostic serial
  */
 
 

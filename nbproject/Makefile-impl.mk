@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Sensaphone-400-Cellular-Diagnostic
+PROJECTNAME=Sensaphone-WSG30TempDisplay-Diagnostic
 
 # Active Configuration
 DEFAULTCONF=Debug

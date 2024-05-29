@@ -13,9 +13,9 @@ CND_BUILDDIR=build
 CND_DLIB_EXT=so
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/400_cellular_diagnostic
-OUTPUT_BASENAME=400_cellular_diagnostic
-PACKAGE_TOP_DIR=400_cellular_diagnostic/
+OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/WSG30TempDisplay_diagnostic
+OUTPUT_BASENAME=WSG30TempDisplay_diagnostic
+PACKAGE_TOP_DIR=WSG30TempDisplay_diagnostic/
 
 # Functions
 function checkReturnCode
@@ -60,15 +60,15 @@ mkdir -p ${NBTMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory "${NBTMPDIR}/400_cellular_diagnostic/bin"
+makeDirectory "${NBTMPDIR}/WSG30TempDisplay_diagnostic/bin"
 copyFileToTmpDir "${OUTPUT_PATH}" "${NBTMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/400_cellular_diagnostic.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/WSG30TempDisplay_diagnostic.tar
 cd ${NBTMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/400_cellular_diagnostic.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/WSG30TempDisplay_diagnostic.tar *
 checkReturnCode
 
 # Cleanup

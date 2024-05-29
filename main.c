@@ -281,7 +281,7 @@ void main_MENU_clicked(void)
                                                     pucMenuItems[liMenuItemSelected]);
         display_status_write(lcTempMainString);
 
-        // Send the formatted menu command to the 400 Cellular
+        // Send the formatted menu command to the UUT
         sprintf(lcTempMainString, "+++MENU:%s", pucMenuCMD[liMenuItemSelected]);
         serial_write(lcTempMainString);
     }
@@ -297,7 +297,7 @@ void main_MENU_clicked(void)
 void main_REBOOT_clicked(void)
 {
     //display_status_write("REBOOT button pressed\r\n");
-    // Send the formatted menu command to the 400 Cellular
+    // Send the formatted menu command to the UUT
     sprintf(lcTempMainString, "+++MENU:Z");
     serial_write(lcTempMainString);
 
@@ -315,7 +315,7 @@ void main_REBOOT_clicked(void)
 void main_RTD_clicked(void)
 {
     //display_status_write("RESET to Defaults button pressed\r\n");
-    // Send the formatted menu command to the 400 Cellular
+    // Send the formatted menu command to the UUT
     sprintf(lcTempMainString, "+++MENU:X");
     serial_write(lcTempMainString);
 
@@ -1244,7 +1244,7 @@ main_periodic(gpointer data)
 
 ////////////////////////////////////////////////////////////////////////////
 // Name:         main
-// Description:  Main routine for 400 Cellular Diagnostic
+// Description:  Main routine for WSG30 Temperature Display Diagnostic
 // Parameters:   Standard main arguments, unused
 // Return:       0 on conventional exit; error otherwise
 ////////////////////////////////////////////////////////////////////////////

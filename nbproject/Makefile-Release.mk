@@ -58,11 +58,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/400_cellular_diagnostic
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/WSG30TempDisplay_diagnostic
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/400_cellular_diagnostic: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/WSG30TempDisplay_diagnostic: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/400_cellular_diagnostic ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/WSG30TempDisplay_diagnostic ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/display.o: display.c
 	${MKDIR} -p ${OBJECTDIR}

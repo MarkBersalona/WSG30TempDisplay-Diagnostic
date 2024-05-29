@@ -17,14 +17,14 @@ sudo apt-get install libgtk-3-dev
 ```
 
 ## Build instructions
-1. Clone Sensaphone-WSG30-Temperature-Display-Diagnostic. If you're reading this, you're already likely in my 
-GitHub project for Sensaphone-WSG30-Temperature-Display-Diagnostic, but if you're not it's at 
-https://github.com/MarkBersalona/Sensaphone-WSG30-Temperature-Display-Diagnostic
+1. Clone Sensaphone-WSG30-TempDisplay-Diagnostic. If you're reading this, you're already likely in my 
+GitHub project for Sensaphone-WSG30-TempDisplay-Diagnostic, but if you're not it's at 
+https://github.com/MarkBersalona/Sensaphone-WSG30-TempDisplay-Diagnostic
 3. In a terminal move to the directory in which the repository has been cloned. Example: on my Linux 
-laptop I cloned it to /home/mark/GTKProjects/Sensaphone-WSG30-Temperature-Display-Diagnostic
+laptop I cloned it to /home/mark/GTKProjects/Sensaphone-WSG30-TempDisplay-Diagnostic
 4. From the terminal use the following command: `make`
 5. If all goes well, the application 'WSG30TempDisplay_diagnostic' will be in ../dist/Debug/GNU-Linux *and* in the current directory
-6. Run 400_cellular_diagnostic
+6. Run WSG30TempDisplay_diagnostic
    - Will need a USB-to-serial cable and a Sensaphone serial card
    - Plug USB end into the Linux PC, the serial end to the Sensaphone serial card; plug the wire header onto the WSG30 Temperature Display serial debug port (take care to orient correctly!)
    - Run the WSG30TempDisplay_diagnostic app in the application directory, the one with the .glade and .css files. The app expects to find and read these files in the same directory where it itself is located.
@@ -78,7 +78,7 @@ Both the Status and Receive text windows adjust to display the most recent text 
 
 To ensure the Receive text buffer doesn't get too large, the Receive text buffer is emptied every 5 minutes.
 
-When enabled, the logfile filename uses the local date and time to prefix "400 Cellular.txt", so an example would be "20230327 0807 400 Cellular.txt" which will be in the same directory as the Diagnostic tool.
+When enabled, the logfile filename uses the local date and time to prefix "WSG30TempDisplay.txt", so an example would be "20230327 0807 WSG30TempDisplay.txt" which will be in the same directory as the Diagnostic tool.
 
 On startup or reboot, the WSG30 Temperature Display debug port outputs 3 instances of "*Sensaphone WSG30 Temperature Display starting...*" which the Diagnostic tool uses to detect device startup/reboot and reset its displays.
 - There are 3 instances to ensure the device startup/reboot is detected even in the case of a garbled transmission or reception: assumes at least 1 complete message will be detected.
