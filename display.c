@@ -88,7 +88,7 @@ char* pucMenuItems[] =
     "Toggle 5sec status",
     "Buzzer",
     "Read cal date",
-    "Toggle LCD blink",
+    "Toggle LCD/LED blink",
 
     "Music notes",
     "Read SN",
@@ -105,7 +105,7 @@ char* pucMenuCMD[] =
     "1", // Toggle 5-second periodic status
     "B", // Buzzer test
     "d", // Read calibration date
-    "L", // Toggle LCD blink
+    "L", // Toggle LLED blink
 
     "M", // Play musical notes
     "n", // Read serial number
