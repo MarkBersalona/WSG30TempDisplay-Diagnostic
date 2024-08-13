@@ -87,5 +87,6 @@ On startup or reboot, the WSG30 Temperature Display debug port outputs 3 instanc
 ## Suggested changes
 - Add an 'About' button to display version and date of Sensaphone WSG30 Temperature Display Diagnostic to Status
 - Option to dump Status contents to log file
-- Reduce the initial height of the Receive window and the overall window, so Diagnostic can fit on a 1366x768 display. (Still manually resizable; maybe get fancy and automatically extend height to available display height??)
+- Reduce the initial height of the Receive window and the overall window, so Diagnostic can fit on a 1366x768 display. (Still manually resizable; maybe get fancy and automatically extend height to available display height??) This is what it looks like on a 1366x768 screen: most of the Receive window cut off...
 
+<img src="Diagnostic at 1366x768.png" alt="WSG30 Temperature Display Diagnostic in 1366x768 screen" />
